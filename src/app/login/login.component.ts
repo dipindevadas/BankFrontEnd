@@ -60,10 +60,14 @@ export class LoginComponent implements OnInit {//(3rd execution)
     
   }
 
-  login()
+  login(a:any,p:any)
   {
-    var acno=this.acno;
-    var pswd=this.pswd;
+
+    var acno=a.value;
+    var pswd=p.value;
+
+    // var acno=this.acno;
+    // var pswd=this.pswd;
     var userDetails=this.userDetails;
 
     if(acno in userDetails){

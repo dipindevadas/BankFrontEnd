@@ -40,5 +40,8 @@ html --->view
 
 a.2)view to component
 
- 1)event binding (1 direction) -{event_name}="function_name
+ 1)event binding (1 direction) (-{event_name}="function_name()";
+ ii)event binding using $event (event_name)="function_name($event)"
+iii)
+
 
