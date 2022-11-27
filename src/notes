@@ -45,3 +45,42 @@ a.2)view to component
 iii)
 
 
+
+
+
+
+
+2)Angular Routing
+
+
+set path for a component
+
+{
+  path:"value",component:class_name
+
+}
+
+eg:
+login
+
+
+{
+      path:'',component:LoginComponent
+},
+
+3 Dependency injection
+
+to share data between2 dependend class 
+
+constructor (private router:Router)
+
+eg:Router class - navigateByUrl is used to navigate the component
+
+4 Angular services
+
+to hold redundant data
+
+ng g s service_name
+
+
+
