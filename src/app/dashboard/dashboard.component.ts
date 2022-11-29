@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       const result=this.ds.deposit(acno,pswd,amount);
       if(result)
       {
-        alert(`$(amount) is credited...Available balance is $(result)`)
+        alert(`${amount} is credited...Available balance is ${result}`)
       }
       else{
         alert('Transaction error')
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
       const result=this.ds.withdraw(acno,pswd,amount)
       if(result)
       {
-        alert(`$(amount) is credited...Available balance is $(result)`)
+        alert(`${amount} is debited...Available balance is ${result}`)
       }
       else{
         alert('Transaction error')

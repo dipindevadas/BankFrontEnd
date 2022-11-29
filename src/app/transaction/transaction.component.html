@@ -9,15 +9,11 @@
     </thead>
 
     <tbody>
-        <tr>
-            <th>Credit</th>
-            <th>1000</th>
+        <tr *ngFor="let t of transaction">
+            <th>{{t.Type}}</th>
+            <th>{{t.Amount}}</th>
         </tr>
 
-        <tr>
-            <th>Debit</th>
-            <th>1000</th>
-        </tr>
     </tbody>
 </table>
 
