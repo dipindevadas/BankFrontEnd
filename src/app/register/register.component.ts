@@ -32,9 +32,11 @@ export class RegisterComponent implements OnInit {
 
   register(){
     // alert('clicked')
-    var username=this.uname;
-    var password=this.pswd;
-    var acno=this.acno;
+    console.log(this.registerForm);
+    
+    var username=this.registerForm.value.uname;
+    var password=this.registerForm.value.pswd;
+    var acno=this.registerForm.value.acno;
 
     const result=this.ds.register(acno,username,password)
     if(result){
