@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+// import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -17,9 +19,17 @@ export class LoginComponent implements OnInit {//3rd execution
 //properties/variables
 //userdefined methods(4th execution          )
 
+//login model
+loginForm=this.fb.group({//group
+  // uname:['',[Validators.required,Validators.pattern('[a-zA-z]*')]],//array
+  acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+  pswd:['',[Validators.required,Validators.pattern('[0-9a-zA-z]*')]]
+}
+)
+
 
 //dependency injection
-  constructor(private ds:DataService,private router:Router) {  //first execution
+  constructor(private ds:DataService,private router:Router,private fb:FormBuilder) {  //first execution
   // it automatically invoke when object is created
   }
 
@@ -62,10 +72,17 @@ export class LoginComponent implements OnInit {//3rd execution
     // }
     login(){
       // alert('login clicked')
-      var acno=this.acno;
-      var pswd=this.pswd;
+      console.log(this.loginForm);
+      
+      var acno=this.loginForm.value.acno;
+      var pswd=this.loginForm.value.pswd;
       var userDetails=this.ds.userDetails;
       
+      if(this.loginForm.valid)
+      {
+        console.log(this.loginForm.get('uname')?.errors);
+        
+
 
       const result=this.ds.login(acno,pswd)
       if(result)
@@ -75,14 +92,20 @@ export class LoginComponent implements OnInit {//3rd execution
       }
       else{
         alert('login failed');
+        this.router.navigateByUrl('login')
       }
       
 
       }
+      else
+      {
+        alert("invalid form")
+      }
 
 
 
       }
+    }
     //   if(acno in userDetails){
     //     if(pswd==userDetails[acno]['password'])
     

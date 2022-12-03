@@ -14,7 +14,47 @@ export class DataService {
   currentAcno="";
 
 
-  constructor() { }
+  constructor() {
+    this.getDetails();
+    
+    
+   }
+  //saveDetails()-to store data into local storage
+  
+  saveDetails()
+  {
+    if(this.userDetails)
+    {
+      localStorage.setItem('Database',JSON.stringify(this.userDetails))
+    }
+    if(this.currentUser)
+    {
+      localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
+    }
+    if(this.currentAcno)
+    {
+      localStorage.setItem('currentAcno',JSON.stringify(this.currentAcno))
+    }
+  }
+
+  getDetails()
+  {
+    if(this.userDetails)
+    {
+      this.userDetails=JSON.parse(localStorage.getItem('Database')|| '')
+    }
+    if(this.currentAcno)
+    {
+      this.currentAcno=JSON.parse(localStorage.getItem('currentAcno')|| '')
+    }
+    if(this.currentUser)
+    {
+      this.currentUser=JSON.parse(localStorage.getItem('currentUser')|| '')
+    }
+
+  }
+
+  //database
   userDetails:any={
     1000:{acno:1000,username:'sanil',password:1000,balance:1000,transaction:[]},
     1001:{acno:1001,username:'akhil',password:1001,balance:1000,transaction:[]},
@@ -36,7 +76,7 @@ export class DataService {
         
       }
       console.log(userDetails);
-      
+      this.saveDetails();
       return true;
     }
   }
@@ -46,6 +86,7 @@ export class DataService {
       if(pswd==userDetails[acno]['password']){
         this.currentUser=userDetails[acno]['username']
         this.currentAcno=acno
+        this.saveDetails();
         return true;
       }
       else{
@@ -69,6 +110,8 @@ deposit(acno:any,pswd:any,amt:any){
         Amount:amount
       }) 
       console.log(userDetails);
+      this.saveDetails();
+
           
        return userDetails[acno]['balance']
     }
@@ -83,7 +126,7 @@ deposit(acno:any,pswd:any,amt:any){
   }
 }
 
-withdraw(acno:any,pswd:any,amt:any)
+withdrow(acno:any,pswd:any,amt:any)
 {
   let userDetails=this.userDetails;
   var amount=parseInt(amt)
@@ -97,6 +140,7 @@ withdraw(acno:any,pswd:any,amt:any)
       }
       )
       console.log(userDetails);
+      this.saveDetails
       
       return userDetails[acno]['balance']
     }
